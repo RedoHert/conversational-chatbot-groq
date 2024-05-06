@@ -21,29 +21,30 @@ def main():
     """
     
     # Get Groq API key
+    os.environ["GROQ_API_KEY"] = "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"
     groq_api_key = os.environ['GROQ_API_KEY']
 
     # Display the Groq logo
     spacer, col = st.columns([5, 1])  
     with col:  
-        st.image('groqcloud_darkmode.png')
+        st.image('hert.png')
 
     # The title and greeting message of the Streamlit application
-    st.title("Chat with Groq!")
-    st.write("Hello! I'm your friendly Groq chatbot. I can help answer your questions, provide information, or just chat. I'm also super fast! Let's start our conversation!")
+    st.title("Iris AI")
+    st.write("Seja bem-vindo a Iris AI!")
 
     # Add customization options to the sidebar
-    st.sidebar.title('Customization')
-    system_prompt = st.sidebar.text_input("System prompt:")
+    st.sidebar.title('Customização')
+    system_prompt = st.sidebar.text_input("Prompt do sistema:")
     model = st.sidebar.selectbox(
-        'Choose a model',
+        'Escolha um modelo:',
         ['llama3-8b-8192', 'mixtral-8x7b-32768', 'gemma-7b-it']
     )
     conversational_memory_length = st.sidebar.slider('Conversational memory length:', 1, 10, value = 5)
 
     memory = ConversationBufferWindowMemory(k=conversational_memory_length, memory_key="chat_history", return_messages=True)
 
-    user_question = st.text_input("Ask a question:")
+    user_question = st.text_input("Pergunte algo:")
 
     # session state variable
     if 'chat_history' not in st.session_state:
@@ -95,11 +96,10 @@ def main():
         response = conversation.predict(human_input=user_question)
         message = {'human':user_question,'AI':response}
         st.session_state.chat_history.append(message)
-        st.write("Chatbot:", response)
+        st.write("Iris AI:", response)
 
 if __name__ == "__main__":
     main()
-
 
 
 
